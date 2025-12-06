@@ -10,15 +10,12 @@
     padding: 20px;
     font-family: Arial, sans-serif;
     height: 100vh; /* чтобы фон занимал всю высоту */
+    /* Фон как во втором примере: изображение, покрывающее весь экран */
     background-image: url("https://raw.githubusercontent.com/SaweNap/e6r8435trb8ertr.io/refs/heads/main/2313.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
   /* Стиль для вставленного изображения */
   .top-image {
@@ -53,6 +50,7 @@
     margin-left: 0%;
     margin-bottom: 10px;
   }
+
   /* Стиль для кнопки "Назад" */
   .back-button {
     display: inline-block;
@@ -70,6 +68,7 @@
     transform: translateX(-50%);
     z-index: 1000;
   }
+
   .back-button:hover {
     background-color: #610000a4;
   }
@@ -77,36 +76,28 @@
 </head>
 <body>
 
-<!-- Кнопка "Назад" -->
+<!-- Кнопка "Назад" с ссылкой -->
 <a href="https://sawenap.github.io/e6r8435trb8ertr.io/" class="back-button">Назад</a>
 
-<!-- Изображение -->
+<!-- Вставляем изображение из ссылки -->
 <img src="https://raw.githubusercontent.com/SaweNap/bdbada.io/refs/heads/main/3123.png" alt="Дополнительное изображение" class="top-image" />
 
-<!-- Тексты с данными -->
+<!-- Тексты с разными стилями -->
 <div class="nickname" id="nickname"></div>
 <div class="username" id="username"></div>
 <div class="id" id="id"></div>
 
 <script>
-  // Получение данных пользователя внутри Telegram WebApp
-  if (window.Telegram && window.Telegram.WebApp) {
-    const user = window.Telegram.WebApp.initDataUnsafe.user;
-    document.getElementById('nickname').textContent = 'Nickname: ' + (user.first_name || 'Нет данных');
-    document.getElementById('username').textContent = '@username: ' + (user.username || 'Нет данных');
-    document.getElementById('id').textContent = 'ID: ' + user.id;
-    // Можно добавить аватар (если есть)
-    // user.photo_url — есть ли у объекта?
-    if (user.photo_url) {
-      // Можно вставить изображение, если нужно
-    }
-  } else {
-    // Не внутри Telegram WebApp
-    document.getElementById('nickname').textContent = 'Данные недоступны';
-    document.getElementById('username').textContent = '';
-    document.getElementById('id').textContent = '';
-  }
-</script>
+  // Читаем параметры URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const nickname = urlParams.get('nickname') || 'Неизвестно';
+  const username = urlParams.get('username') || 'Неизвестно';
+  const id = urlParams.get('id') || 'Неизвестно';
 
+  // Заполняем соответствующие блоки
+  document.getElementById('nickname').textContent = `Nickname | ${nickname}`;
+  document.getElementById('username').textContent = `@username | ${username}`;
+  document.getElementById('id').textContent = `ID TG | ${id}`;
+</script>
 </body>
 </html>
