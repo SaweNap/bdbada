@@ -20,25 +20,26 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            overflow: hidden; /* отключение прокрутки */
         }
         .top-image {
-            max-width: 150px;
+            max-width: 200px; /* увеличил размер */
             width: 100%;
             border-radius: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 30px; /* увеличил отступ */
         }
         .user-info {
-            font-size: 24px;
+            font-size: 30px; /* увеличил размер текста */
             color: #ffffff;
-            margin: 10px 0;
+            margin: 15px 0; /* увеличил отступы */
         }
         .back-button {
-            padding: 10px 20px;
+            padding: 15px 30px; /* увеличил размер кнопки */
             background-color: #610000;
             color: #fff;
             text-decoration: none;
             border-radius: 8px;
-            font-size: 18px;
+            font-size: 20px; /* увеличил размер шрифта */
             cursor: pointer;
             transition: background-color 0.3s;
             position: fixed;
@@ -67,12 +68,16 @@
         // Получаем данные, используя decodeURIComponent для правильного отображения кириллицы
         const nickname = urlParams.get('nickname') || 'Неизвестно';
         const username = urlParams.get('username') || 'Неизвестно';
-        const id = urlParams.get('id') || 'Неизвестно'; // <-- ВОТ ИСПРАВЛЕННАЯ СТРОКА
+        const id = urlParams.get('id') || 'Неизвестно';
 
         // Заполняем соответствующие блоки
         document.getElementById('nickname').textContent = `Nickname | ${nickname}`;
         document.getElementById('username').textContent = `@username | ${username}`;
         document.getElementById('id').textContent = `ID TG | ${id}`;
+
+        // Предотвращение масштабирования и прокрутки с помощью JS
+        window.addEventListener("wheel", function(e) { if (e.ctrlKey) e.preventDefault(); }, { passive: false });
+        window.addEventListener("keydown", function(e) { if (e.ctrlKey) { e.preventDefault(); } });
     </script>
 </body>
 </html>
