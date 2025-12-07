@@ -3,101 +3,132 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Профиль</title>
+<title>Казино</title>
 <style>
   body {
     margin: 0;
-    padding: 20px;
     font-family: Arial, sans-serif;
-    height: 100vh; /* чтобы фон занимал всю высоту */
-    /* Фон как во втором примере: изображение, покрывающее весь экран */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #2c2f33;
+    color: #fff;
+    overflow: hidden;
     background-image: url("https://raw.githubusercontent.com/SaweNap/e6r8435trb8ertr.io/refs/heads/main/2313.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    color: #fff;
-  }
-  /* Стиль для вставленного изображения */
-  .top-image {
-    display: block;
-    margin: 0 auto 20px auto;
-    max-width: 150px; /* уменьшенная ширина */
-    width: 100%; /* адаптация по ширине */
-    border-radius: 10px;
-  }
-  /* Тексты с разными стилями */
-  .nickname {
-    font-size: 24px;
-    color: #ffffff; /* голубой цвет */
-    text-align: center;
-    margin-top: -1%;
-    margin-left: 0%;
-    margin-bottom: 10px;
-  }
-  .username {
-    font-size: 24px;
-    color: #ffffff; /* голубой цвет */
-    text-align: center;
-    margin-top: 5%;
-    margin-left: 0%;
-    margin-bottom: 10px;
-  }
-  .id {
-    font-size: 24px;
-    color: #ffffff; /* голубой цвет */
-    text-align: center;
-    margin-top: 5%;
-    margin-left: 0%;
-    margin-bottom: 10px;
   }
 
-  /* Стиль для кнопки "Назад" */
-  .back-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color:#610000;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 18px;
+  /* Основной контейнер контента */
+  .content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2vw; /* масштабируем шрифт по ширине */
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Стиль для кнопки */
+  .image-button {
+    position: fixed; /* фиксированное позиционирование */
+    top: 10%; /* относительный отступ сверху */
+    right: 8%; /* относительный отступ справа */
+    background: none;
+    border: none;
+    padding: 0;
     cursor: pointer;
-    transition: background-color 0.3s;
-    position: fixed; /* фиксированное расположение */
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
+    outline: none;
+    z-index: 1000; /* чтобы было сверху */
   }
 
-  .back-button:hover {
+  /* Адаптивный стиль для картинки внутри кнопки */
+  .image-button img {
+    width: 30vw; /* увеличили ширину в процентах от ширины окна */
+    max-width: 250px; /* увеличили максимум размера */
+    height: auto;
+    border-radius: 15px;
+    display: block;
+  }
+
+  /* Медиазапрос для очень маленьких экранов */
+  @media (max-width: 400px) {
+    .image-button img {
+      width: 35vw; /* чуть больше на очень маленьких экранах */
+    }
+    .content {
+      font-size: 4vw; /* масштабируем шрифт */
+    }
+  }
+
+  /* Стиль для навигационного меню */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    z-index: 999; /* поверх остального, но ниже кнопки */
+  }
+
+  /* Стиль для кнопок меню */
+  .bottom-nav button {
+    background-color: #610000;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    margin: 0 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s;
+  }
+
+  /* Эффект при наведении */
+  .bottom-nav button:hover {
     background-color: #610000a4;
   }
 </style>
+<script>
+  // Блокировка Ctrl при колесике мыши
+  window.addEventListener("wheel", function(e) {
+    if (e.ctrlKey) e.preventDefault();
+  }, { passive: false });
+  
+  // Блокировка Ctrl при нажатии клавиш
+  window.addEventListener("keydown", function(e) {
+    if (e.ctrlKey) {
+      e.preventDefault();
+    }
+  });
+
+  // Функция для открытия профиля внутри Telegram WebApp
+  function openProfile() {
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.openWebApp('https://sawenap.github.io/bdbada.io/');
+    } else {
+      // В обычном браузере — переходим по ссылке
+      window.location.href = 'https://sawenap.github.io/bdbada.io/profile.html';
+    }
+  }
+</script>
 </head>
 <body>
 
-<!-- Кнопка "Назад" -->
-<a href="https://sawenap.github.io/e6r8435trb8ertr.io/" class="back-button">Назад</a>
-
-<!-- Дополнительное изображение -->
-<img src="https://raw.githubusercontent.com/SaweNap/bdbada.io/refs/heads/main/3123.png" alt="Дополнительное изображение" class="top-image" />
-
-<!-- Тексты с данными пользователя -->
-<div class="nickname" id="nickname"></div>
-<div class="username" id="username"></div>
-<div class="id" id="id"></div>
-
-<script>
-  // Получение параметров из URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const nickname = urlParams.get('nickname') || 'Неизвестно';
-  const username = urlParams.get('username') || 'Неизвестно';
-  const id = urlParams.get('id') || 'Неизвестно';
-
-  // Заполнение блоков данными
-  document.getElementById('nickname').textContent = `Nickname | ${nickname}`;
-  document.getElementById('username').textContent = `@username | ${username}`;
-  document.getElementById('id').textContent = `ID TG | ${id}`;
-</script>
+<div class="content">
+  <!-- Ваша существующая кнопка -->
+  <button class="image-button" onclick="window.location.href='https://sawenap.github.io/d6ftgb8ertgf.io/'">
+    <img src="https://raw.githubusercontent.com/SaweNap/e6r8435trb8ertr.io/refs/heads/main/BlackJack.jpg" alt="Перейти" />
+  </button>
+</div>
+<!-- Навигационное меню -->
+<div class="bottom-nav">
+  <button onclick="window.location.href='https://sawenap.github.io/e6r8435trb8ertr.io/'">Игры</button>
+  <button onclick="window.location.href='https://sawenap.github.io/bdbada.io/'">Профиль</button>
+</div>
 </body>
 </html>
